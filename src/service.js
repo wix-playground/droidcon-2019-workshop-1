@@ -5,9 +5,18 @@ const md5hash = '1a40761d490c2e791cdd2814975ea5af';
 const limit = 30;
 
 export async function fetchCharacters(offset) {
-  let api = baseUrl+'?ts='+timestamp+'&apikey='+PUB_KEY+'&hash='+md5hash+'&limit='+limit;
-  if(offset!==0){
-    api+='&offset='+offset;
+  let api =
+    baseUrl +
+    '?ts=' +
+    timestamp +
+    '&apikey=' +
+    PUB_KEY +
+    '&hash=' +
+    md5hash +
+    '&limit=' +
+    limit;
+  if (offset !== 0) {
+    api += '&offset=' + offset;
   }
 
   const response = await fetch(api);
