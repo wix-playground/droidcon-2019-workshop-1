@@ -3,6 +3,8 @@ import {StyleSheet} from 'react-native';
 import {View, Card, Button, Text} from 'react-native-ui-lib';
 
 const deleteIcon = require('../img/delete.png');
+const favorite = require('../img/favorite.png');
+const favoriteSelected = require('../img/favorite_selected.png');
 
 export default class CharacterListItem extends React.PureComponent {
   render() {
@@ -29,7 +31,6 @@ export default class CharacterListItem extends React.PureComponent {
             ellipsizeMode={'tail'}>
             {desc}
           </Text>
-
           <View row style={styles.btn}>
             <Button
               text90
@@ -38,6 +39,15 @@ export default class CharacterListItem extends React.PureComponent {
               iconSource={deleteIcon}
               label="Remove"
               onPress={() => this.props.onRemoveItem(this.props.detail.id)}
+            />
+            <Button
+              marginL-10
+              text90
+              link
+              red10
+              iconSource={this.props.isFavorite ? favoriteSelected : favorite}
+              label="Favorite"
+              onPress={() => this.props.onFavoriteClicked(this.props.detail.id)}
             />
           </View>
         </View>
