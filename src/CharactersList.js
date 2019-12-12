@@ -1,11 +1,5 @@
-import React, {Component} from 'react';
-import {
-  FlatList,
-  ActivityIndicator,
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import React from 'react';
+import {FlatList, ActivityIndicator, View, StyleSheet} from 'react-native';
 import ListItemCard from './CharacterListItem';
 import * as MarvelApi from './service';
 
@@ -58,18 +52,10 @@ class CharactersList extends React.Component {
   };
 
   _removeCharacter = id => {
-    // this.setState({
-    //   characters: this.filterCharacters(this.state.characters, id),
-    // });
+    this.setState({
+      characters: this.state.characters.filter(item => item.id !== id),
+    });
   };
-
-  filterCharacters(array, id) {
-    return array.filter(item => item.id !== id);
-  }
-
-  sortCharacters(array, compareFn) {
-    return array.sort(compareFn);
-  }
 
   render() {
     return (
@@ -90,7 +76,9 @@ class CharactersList extends React.Component {
 
 const styles = StyleSheet.create({
   list: {
-    marginTop: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#232020',
   },
 });
 

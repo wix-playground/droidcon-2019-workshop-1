@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
-import {View, Card, Button, Text, Image} from 'react-native-ui-lib';
+import {View, Card, Button, Text} from 'react-native-ui-lib';
 
 const deleteIcon = require('../img/delete.png');
 
@@ -18,10 +18,15 @@ export default class CharacterListItem extends React.PureComponent {
       <Card row height={150} style={styles.card}>
         <Card.Image width={100} imageSource={{uri: img}} />
         <View padding-20 flex>
-          <Text text70 dark10>
+          <Text text70 white>
             {name}
           </Text>
-          <Text style={styles.testDesc} text90 dark50>
+          <Text
+            style={styles.testDesc}
+            text90
+            dark50
+            numberOfLines={4}
+            ellipsizeMode={'tail'}>
             {desc}
           </Text>
 
@@ -29,7 +34,7 @@ export default class CharacterListItem extends React.PureComponent {
             <Button
               text90
               link
-              red10
+              red30
               iconSource={deleteIcon}
               label="Remove"
               onPress={() => this.props.onRemoveItem(this.props.detail.id)}
@@ -43,7 +48,11 @@ export default class CharacterListItem extends React.PureComponent {
 
 const styles = StyleSheet.create({
   card: {
-    marginBottom: 3,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: '#3a3535',
   },
   testDesc: {
     height: 60,
