@@ -70,7 +70,7 @@ class CharactersList extends React.Component {
   sortCharacters(array, id) {
     return array
       .map(item => {
-        item.isFavorite = item.id == id ? !item.isFavorite : item.isFavorite;
+        item.isFavorite = item.id === id ? !item.isFavorite : item.isFavorite;
         return item;
       })
       .sort((char1, char2) => {
