@@ -20,7 +20,7 @@ export default class CharacterListItem extends React.PureComponent {
       <Card row height={150} style={styles.card} onPress={this.props.onPress}>
         <Card.Image width={100} imageSource={{uri: img}} />
         <View padding-20 flex>
-          <Text text70 white>
+          <Text text70 white numberOfLines={1}>
             {name}
           </Text>
           <Text
