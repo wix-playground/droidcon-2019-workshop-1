@@ -12,8 +12,12 @@
   "dependencies": {
     "react": "16.9.0",
     "react-native": "0.61.5",
-    "react-navigation": "^3.12.1",
-    "react-native-ui-lib": "^3.0.0"
+    "react-native-gesture-handler": "1.5.x",
+    "react-native-screens": "^2.0.0-alpha.19",
+    "react-native-ui-lib": "^3.0.0",
+    "react-native-webview": "4.x.x",
+    "react-navigation": "4.x.x",
+    "react-navigation-stack": "1.x.x"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

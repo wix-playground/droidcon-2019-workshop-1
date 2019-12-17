@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ActivityIndicator, View, StyleSheet} from 'react-native';
+import {FlatList, ActivityIndicator, View, StyleSheet, StatusBar} from 'react-native';
 import ListItemCard from './CharacterListItem';
 import * as MarvelApi from './service';
 
@@ -92,22 +92,30 @@ class CharactersList extends React.Component {
 
   render() {
     return (
-      <FlatList
-        data={this.state.characters}
-        style={styles.list}
-        keyExtractor={item => item.id.toString()}
-        onEndReached={this._handleLoadMore}
-        ListFooterComponent={this._renderFooter}
-        onEndReachedThreshold={0.4}
-        renderItem={({item}) => (
-          <ListItemCard
-            detail={item}
-            isFavorite={item.isFavorite}
-            onRemoveItem={this._removeCharacter}
-            onFavoriteClicked={this._toggleFavorite}
-          />
-        )}
-      />
+      <View>
+        <StatusBar barStyle="light-content" backgroundColor="#232020" />
+        <FlatList
+          data={this.state.characters}
+          style={styles.list}
+          keyExtractor={item => item.id.toString()}
+          onEndReached={this._handleLoadMore}
+          ListFooterComponent={this._renderFooter}
+          onEndReachedThreshold={0.4}
+          renderItem={({item}) => (
+            <ListItemCard
+              detail={item}
+              isFavorite={item.isFavorite}
+              onRemoveItem={this._removeCharacter}
+              onFavoriteClicked={this._toggleFavorite}
+              onPress={() => {
+                this.props.navigation.navigate('Details', {
+                  hero: item,
+                });
+              }}
+            />
+          )}
+        />
+      </View>
     );
   }
 }
