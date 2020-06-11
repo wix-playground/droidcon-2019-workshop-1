@@ -4,7 +4,7 @@ import {WebView} from 'react-native-webview';
 
 class HeroDetails extends React.Component {
   render() {
-    const hero = this.props.navigation.getParam('hero');
+    const hero = this.props.route.params.hero;
     return (
       <WebView source={{uri: this.getHeroUrl(hero)}} style={styles.content} />
     );

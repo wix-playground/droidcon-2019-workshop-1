@@ -1,40 +1,52 @@
+import React from 'react';
 import {AppRegistry} from 'react-native';
 import CharactersList from './src/CharactersList';
 import HeroDetails from './src/HeroDetails';
 import {name as appName} from './app.json';
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
 import {useScreens} from 'react-native-screens';
+
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 useScreens();
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: {
-      screen: CharactersList,
-      navigationOptions: {
-        title: 'Super Heroes',
-      },
-    },
-    Details: {
-      screen: HeroDetails,
-      navigationOptions: ({navigation}) => ({
-        title: navigation.state.params.hero.name,
-      }),
-    },
-  },
-  {
-    initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#3a3535',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    },
-  },
-);
+const Stack = createStackNavigator();
+// {
+//   Home: {
+//     screen: CharactersList,
+//     navigationOptions: {
+//       title: 'Super Heroes',
+//     },
+//   },
+//   Details: {
+//     screen: HeroDetails,
+//     navigationOptions: ({ navigation }) => ({
+//       title: navigation.state.params.hero.name,
+//     }),
+//   },
+// },
+// {
+//   initialRouteName: 'Home',
+//   defaultNavigationOptions: {
+//     headerStyle: {
+//       backgroundColor: '#3a3535',
+//     },
+//     headerTintColor: '#fff',
+//     headerTitleStyle: {
+//       fontWeight: 'bold',
+//     },
+//   },
+// },
 
-AppRegistry.registerComponent(appName, () => createAppContainer(AppNavigator));
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={CharactersList} />
+        <Stack.Screen name="Details" component={HeroDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+AppRegistry.registerComponent(appName, () => App);
