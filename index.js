@@ -11,37 +11,21 @@ import {createStackNavigator} from '@react-navigation/stack';
 useScreens();
 
 const Stack = createStackNavigator();
-// {
-//   Home: {
-//     screen: CharactersList,
-//     navigationOptions: {
-//       title: 'Super Heroes',
-//     },
-//   },
-//   Details: {
-//     screen: HeroDetails,
-//     navigationOptions: ({ navigation }) => ({
-//       title: navigation.state.params.hero.name,
-//     }),
-//   },
-// },
-// {
-//   initialRouteName: 'Home',
-//   defaultNavigationOptions: {
-//     headerStyle: {
-//       backgroundColor: '#3a3535',
-//     },
-//     headerTintColor: '#fff',
-//     headerTitleStyle: {
-//       fontWeight: 'bold',
-//     },
-//   },
-// },
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#3a3535',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
         <Stack.Screen name="Home" component={CharactersList} />
         <Stack.Screen name="Details" component={HeroDetails} />
       </Stack.Navigator>
