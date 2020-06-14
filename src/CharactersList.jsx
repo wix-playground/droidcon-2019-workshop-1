@@ -1,5 +1,11 @@
 import React from 'react';
-import {FlatList, ActivityIndicator, View, StyleSheet, StatusBar} from 'react-native';
+import {
+  FlatList,
+  ActivityIndicator,
+  View,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import ListItemCard from './CharacterListItem';
 import * as MarvelApi from './service';
 
@@ -108,9 +114,11 @@ class CharactersList extends React.Component {
               onRemoveItem={this._removeCharacter}
               onFavoriteClicked={this._toggleFavorite}
               onPress={() => {
-                this.props.navigation.navigate('Details', {
+                // for (let i = 0; i < 10; i++) {
+                this.props.navigation.push('Details', {
                   hero: item,
                 });
+                // }
               }}
             />
           )}

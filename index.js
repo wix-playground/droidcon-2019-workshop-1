@@ -3,12 +3,12 @@ import {AppRegistry} from 'react-native';
 import CharactersList from './src/CharactersList';
 import HeroDetails from './src/HeroDetails';
 import {name as appName} from './app.json';
-import {useScreens} from 'react-native-screens';
+import {enableScreens} from 'react-native-screens';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-useScreens();
+enableScreens();
 
 const Stack = createStackNavigator();
 
