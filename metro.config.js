@@ -4,8 +4,11 @@
  *
  * @format
  */
-
 module.exports = {
+  resolver: {
+    /* resolver options */
+    sourceExts: ['jsx', 'js', 'ts', 'tsx'], //add here
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
