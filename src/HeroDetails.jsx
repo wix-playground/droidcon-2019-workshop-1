@@ -9,7 +9,7 @@ class HeroDetails extends React.Component {
   }
 
   render() {
-    const hero = this.props.route.params.hero;
+    const hero = this.props.hero;
     return (
       <WebView source={{uri: this.getHeroUrl(hero)}} style={styles.content} />
     );

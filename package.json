@@ -13,13 +13,10 @@
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "1.5.x",
-    "react-native-screens": "^2.0.0-alpha.19",
+    "react-native-navigation": "^6.10.1",
+    "react-native-safe-area-context": "3.x.x",
     "react-native-ui-lib": "^3.0.0",
-    "react-native-webview": "10.2.3",
-    "@react-navigation/native": "5.x.x",
-    "@react-navigation/stack": "5.x.x",
-    "@react-native-community/masked-view": "0.x.x",
-    "react-native-safe-area-context": "3.x.x"
+    "react-native-webview": "10.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",

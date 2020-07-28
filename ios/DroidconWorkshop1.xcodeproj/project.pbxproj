@@ -148,7 +148,6 @@
 				2A610FB31FA01336753A9A17 /* Pods-DroidconWorkshop1Tests.debug.xcconfig */,
 				0F62ED76F37FC4E8FFC845B2 /* Pods-DroidconWorkshop1Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +307,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

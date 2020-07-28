@@ -8,12 +8,26 @@ import {
 } from 'react-native';
 import ListItemCard from './CharacterListItem';
 import * as MarvelApi from './service';
+import {Navigation} from 'react-native-navigation';
+import {HERO_DETAILS} from "../index";
 
 class CharactersList extends React.Component {
   state = {
     isLoading: true,
     characters: [],
     offset: 0,
+  };
+
+  static options = {
+    topBar: {
+      title: {
+        text: 'Home',
+        color: '#FFFFFF'
+      },
+      background: {
+        color: '#3a3535',
+      },
+    },
   };
 
   componentDidMount() {
@@ -114,11 +128,25 @@ class CharactersList extends React.Component {
               onRemoveItem={this._removeCharacter}
               onFavoriteClicked={this._toggleFavorite}
               onPress={() => {
-                // for (let i = 0; i < 10; i++) {
-                this.props.navigation.push('Details', {
-                  hero: item,
+                Navigation.push(this.props.componentId, {
+                  component: {
+                    name: HERO_DETAILS,
+                    passProps: {
+                      hero: item
+                    },
+                    options: {
+                      topBar: {
+                        title: {
+                          text: item.name,
+                          color: '#FFFFFF'
+                        },
+                        background: {
+                          color: '#3a3535',
+                        }
+                      }
+                    }
+                  }
                 });
-                // }
               }}
             />
           )}
