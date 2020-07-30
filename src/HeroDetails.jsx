@@ -8,29 +8,28 @@ import {CHARACTERS_LIST, HERO_DETAILS} from '../index';
 import TestController from './TestController';
 
 class HeroDetails extends React.Component {
-  static options = {
-    topBar: {
-      title: {
-        color: '#FFFFFF',
+  static options(props) {
+    return {
+      topBar: {
+        title: {
+          color: '#FFFFFF',
+          text: props.hero.name
+        },
+        background: {
+          color: '#3a3535',
+        },
       },
-      background: {
-        color: '#3a3535',
-      },
-    },
-  };
+    };
+  }
 
   firstRender = true;
 
   constructor(props) {
     super(props);
+    Navigation.events().bindComponent(this);
     if (props.scenario === 'constructor') {
       profiler.scenario('constructor').sample(HERO_DETAILS, props.instanceId);
     }
-    Navigation.mergeOptions(this.props.componentId, {
-      topBar: {
-        text: props.hero.name,
-      },
-    });
   }
 
   componentDidAppear() {
