@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import ListItemCard from './CharacterListItem';
 import * as MarvelApi from './service';
-import {Navigation} from 'react-native-navigation';
 import {CHARACTERS_LIST, HERO_DETAILS} from '../index';
 import TestController from './TestController';
 
@@ -136,13 +135,8 @@ class CharactersList extends React.Component {
                 onRemoveItem={this._removeCharacter}
                 onFavoriteClicked={this._toggleFavorite}
                 onPress={() => {
-                  Navigation.push(this.props.componentId, {
-                    component: {
-                      name: HERO_DETAILS,
-                      passProps: {
-                        hero: item,
-                      },
-                    },
+                  this.props.navigation.push(HERO_DETAILS, {
+                    hero: item,
                   });
                 }}
               />

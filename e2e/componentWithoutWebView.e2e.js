@@ -12,10 +12,10 @@ describe('Component With WebView', () => {
     await element(by.id('context')).typeText(context);
   }
 
-  beforeAll(async () => {
-    await initContext('regular');
-    await element(by.id('clear')).tap();
-  });
+  // beforeAll(async () => {
+  //   await initContext('regular');
+  //   await element(by.id('clear')).tap();
+  // });
 
   describe('Push Screen N Times', () => {
     it('measure constructor', async () => {

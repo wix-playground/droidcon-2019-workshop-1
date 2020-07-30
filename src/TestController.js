@@ -1,16 +1,18 @@
 import profiler from './benchmarking/ScreenProfiler';
-import {Navigation} from 'react-native-navigation';
 import {View, Button, Text, TextInput} from 'react-native-ui-lib';
 import React from 'react';
 
 const TestController = props => {
   const {
-    componentId,
     thisComponentName,
     otherComponentName,
     otherProps = {},
     instanceId,
-  } = props;
+    navigation,
+  } = {
+    ...props,
+    ...(props.route && props.route.params),
+  };
   return (
     <>
       <View
@@ -48,27 +50,10 @@ const TestController = props => {
                   profiler
                     .scenario(scenario)
                     .sample(thisComponentName, nextInstanceId);
-                  await Navigation.push(componentId, {
-                    component: {
-                      name: thisComponentName,
-                      passProps: {
-                        ...props,
-                        scenario,
-                        instanceId: nextInstanceId,
-                      },
-                      options: {
-                        topBar: {
-                          title: {
-                            text: `screen ${nextInstanceId}`,
-                          },
-                        },
-                        animations: {
-                          push: {
-                            waitForRender: true,
-                          },
-                        },
-                      },
-                    },
+                  await navigation.push(thisComponentName, {
+                    ...props,
+                    scenario,
+                    instanceId: nextInstanceId,
                   });
                 }}
               />
@@ -80,27 +65,10 @@ const TestController = props => {
                   profiler
                     .scenario(scenario)
                     .sample(otherComponentName, nextInstanceId);
-                  await Navigation.push(componentId, {
-                    component: {
-                      name: otherComponentName,
-                      passProps: {
-                        scenario,
-                        instanceId: nextInstanceId,
-                        ...otherProps,
-                      },
-                      options: {
-                        topBar: {
-                          title: {
-                            text: `screen ${nextInstanceId}`,
-                          },
-                        },
-                        animations: {
-                          push: {
-                            waitForRender: true,
-                          },
-                        },
-                      },
-                    },
+                  await navigation.push(otherComponentName, {
+                    scenario,
+                    instanceId: nextInstanceId,
+                    ...otherProps,
                   });
                 }}
               />

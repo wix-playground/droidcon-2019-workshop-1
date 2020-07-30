@@ -19,13 +19,13 @@ describe('Component With WebView', () => {
     await element(by.id('context')).typeText(context);
   }
 
-  beforeAll(async () => {
-    await initContext('webview');
-    await element(by.id('clear')).tap();
-  });
+  // beforeAll(async () => {
+  //   await initContext('webview');
+  //   await element(by.id('clear')).tap();
+  // });
 
-  describe.only('Push Screen N Times', () => {
-    it.skip('measure constructor', async () => {
+  describe('Push Screen N Times', () => {
+    it('measure constructor', async () => {
       await gotoHeroDetails();
       await pushSelf('constructor', SCREEN_TIMES);
       await element(by.id('export-constructor')).tap();

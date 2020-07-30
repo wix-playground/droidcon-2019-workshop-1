@@ -12,10 +12,10 @@ describe('Component With WebView', () => {
     await element(by.id('context')).typeText(context);
   }
 
-  beforeAll(async () => {
-    await initContext('alternate');
-    await element(by.id('clear')).tap();
-  });
+  // beforeAll(async () => {
+  //   await initContext('alternate');
+  //   await element(by.id('clear')).tap();
+  // });
 
   describe.only('Push Screens in Alternate', () => {
     it('measure constructor', async () => {

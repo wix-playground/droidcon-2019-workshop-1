@@ -1,54 +1,61 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, InteractionManager} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {View, Button, Text} from 'react-native-ui-lib';
-import {Navigation} from 'react-native-navigation';
 import profiler from './benchmarking/ScreenProfiler';
 import {CHARACTERS_LIST, HERO_DETAILS} from '../index';
 import TestController from './TestController';
 
 class HeroDetails extends React.Component {
-  static options(props) {
-    return {
-      topBar: {
-        title: {
-          color: '#FFFFFF',
-          text: props.hero.name
-        },
-        background: {
-          color: '#3a3535',
-        },
-      },
-    };
-  }
-
   firstRender = true;
 
   constructor(props) {
     super(props);
-    Navigation.events().bindComponent(this);
-    if (props.scenario === 'constructor') {
-      profiler.scenario('constructor').sample(HERO_DETAILS, props.instanceId);
+    if (this.getScenario() === 'constructor') {
+      profiler.scenario('constructor').sample(HERO_DETAILS, this.getInstanceId());
     }
   }
 
-  componentDidAppear() {
-    if (this.props.scenario === 'appear') {
-      profiler.scenario('appear').sample(HERO_DETAILS, this.props.instanceId);
-    }
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      if (this.getScenario() === 'appear') {
+        profiler.scenario('appear').sample(HERO_DETAILS, this.getInstanceId());
+      }
+    });
   }
+
+  getScenario = () => {
+    return this.getProp('scenario');
+  };
+
+  getInstanceId = () => {
+    return this.getProp('instanceId');
+  };
+
+  getProp = propName => {
+    return (
+      this.props[propName] ||
+      (this.props.route &&
+        this.props.route.params &&
+        this.props.route.params[propName])
+    );
+  };
 
   render() {
-    if (this.firstRender && this.props.scenario === 'render') {
+    if (this.firstRender && this.getScenario() === 'render') {
       profiler.scenario('render').sample(HERO_DETAILS, this.props.instanceId);
     }
     this.firstRender = false;
-    const hero = this.props.hero;
+    const hero = this.props.hero || this.props.route.params.hero;
     return (
       <>
-        <WebView testID="webview" source={{uri: this.getHeroUrl(hero)}} style={styles.content} />
+        <WebView
+          testID="webview"
+          source={{uri: this.getHeroUrl(hero)}}
+          style={styles.content}
+        />
         <TestController
           {...this.props}
+          hero={hero}
           thisComponentName={HERO_DETAILS}
           otherComponentName={CHARACTERS_LIST}
         />
