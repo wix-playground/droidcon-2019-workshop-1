@@ -31,6 +31,11 @@ class CharactersList extends React.Component {
     },
   };
 
+  constructor(props) {
+    super(props);
+    for (let i = 0; i < Math.pow(2, 20); i++);
+  }
+
   componentDidMount() {
     this._fetchCharacters();
   }
@@ -113,7 +118,7 @@ class CharactersList extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" backgroundColor="#232020" />
         <FlatList
           data={this.state.characters}

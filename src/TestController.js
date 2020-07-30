@@ -57,6 +57,11 @@ const TestController = props => {
                         instanceId: nextInstanceId,
                       },
                       options: {
+                        topBar: {
+                          title: {
+                            text: `screen ${nextInstanceId}`,
+                          },
+                        },
                         animations: {
                           push: {
                             waitForRender: true,
@@ -83,6 +88,11 @@ const TestController = props => {
                         instanceId: nextInstanceId,
                       },
                       options: {
+                        topBar: {
+                          title: {
+                            text: `screen ${nextInstanceId}`,
+                          },
+                        },
                         animations: {
                           push: {
                             waitForRender: true,
