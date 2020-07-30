@@ -55,4 +55,30 @@ describe('Component With WebView', () => {
       await element(by.id('export-render')).tap();
     });
   });
+
+  describe.only('Push Screens in Alternate', () => {
+    it('measure constructor', async () => {
+      await gotoHeroDetails();
+      for (let i = 0; i < SCREEN_TIMES; i++) {
+        await element(by.id('push-other-constructor')).tap();
+      }
+      await element(by.id('export-constructor')).tap();
+    });
+
+    it('measure appear', async () => {
+      await gotoHeroDetails();
+      for (let i = 0; i < SCREEN_TIMES; i++) {
+        await element(by.id('push-other-appear')).tap();
+      }
+      await element(by.id('export-appear')).tap();
+    });
+
+    it('measure render', async () => {
+      await gotoHeroDetails();
+      for (let i = 0; i < SCREEN_TIMES; i++) {
+        await element(by.id('push-other-render')).tap();
+      }
+      await element(by.id('export-render')).tap();
+    });
+  });
 });

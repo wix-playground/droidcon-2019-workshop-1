@@ -153,6 +153,27 @@ class CharactersList extends React.Component {
           {...this.props}
           thisComponentName={CHARACTERS_LIST}
           otherComponentName={HERO_DETAILS}
+          otherProps={{
+            hero: {
+              urls: [
+                {
+                  type: 'details',
+                  url:
+                    'http://marvel.com/comics/characters/1011334/3-d_man?utm_campaign=apiRef&utm_source=9f2bf5da8f414dc8ca39296c54eb48ef',
+                },
+                {
+                  type: 'wiki',
+                  url:
+                    'http://marvel.com/universe/3-D_Man_(Chandler)?utm_campaign=apiRef&utm_source=9f2bf5da8f414dc8ca39296c54eb48ef',
+                },
+                {
+                  type: 'comiclink',
+                  url:
+                    'http://marvel.com/comics/characters/1011334/3-d_man?utm_campaign=apiRef&utm_source=9f2bf5da8f414dc8ca39296c54eb48ef',
+                },
+              ],
+            },
+          }}
         />
       </View>
     );

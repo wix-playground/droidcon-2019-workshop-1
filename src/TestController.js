@@ -1,5 +1,4 @@
 import profiler from './benchmarking/ScreenProfiler';
-import {CHARACTERS_LIST, HERO_DETAILS} from '../index';
 import {Navigation} from 'react-native-navigation';
 import {View, Button, Text, TextInput} from 'react-native-ui-lib';
 import React from 'react';
@@ -9,6 +8,7 @@ const TestController = props => {
     componentId,
     thisComponentName,
     otherComponentName,
+    otherProps = {},
     instanceId,
   } = props;
   return (
@@ -86,6 +86,7 @@ const TestController = props => {
                       passProps: {
                         scenario,
                         instanceId: nextInstanceId,
+                        ...otherProps,
                       },
                       options: {
                         topBar: {
