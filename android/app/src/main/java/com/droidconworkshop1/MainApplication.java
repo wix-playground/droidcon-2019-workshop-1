@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.reactnativenavigation.NavigationApplication;
-import com.swmansion.rnscreens.RNScreensPackage;
+import com.rnfs.RNFSPackage;
 import com.facebook.react.ReactNativeHost;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.facebook.react.ReactPackage;

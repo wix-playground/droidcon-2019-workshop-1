@@ -9,7 +9,8 @@ import {
 import ListItemCard from './CharacterListItem';
 import * as MarvelApi from './service';
 import {Navigation} from 'react-native-navigation';
-import {HERO_DETAILS} from "../index";
+import {CHARACTERS_LIST, HERO_DETAILS} from '../index';
+import TestController from './TestController';
 
 class CharactersList extends React.Component {
   state = {
@@ -22,7 +23,7 @@ class CharactersList extends React.Component {
     topBar: {
       title: {
         text: 'Home',
-        color: '#FFFFFF'
+        color: '#FFFFFF',
       },
       background: {
         color: '#3a3535',
@@ -117,39 +118,36 @@ class CharactersList extends React.Component {
         <FlatList
           data={this.state.characters}
           style={styles.list}
+          testID="character-list"
           keyExtractor={item => item.id.toString()}
           onEndReached={this._handleLoadMore}
           ListFooterComponent={this._renderFooter}
           onEndReachedThreshold={0.4}
-          renderItem={({item}) => (
-            <ListItemCard
-              detail={item}
-              isFavorite={item.isFavorite}
-              onRemoveItem={this._removeCharacter}
-              onFavoriteClicked={this._toggleFavorite}
-              onPress={() => {
-                Navigation.push(this.props.componentId, {
-                  component: {
-                    name: HERO_DETAILS,
-                    passProps: {
-                      hero: item
+          renderItem={({item, index}) => (
+            <View testID={`hero-details-${index}`}>
+              <ListItemCard
+                detail={item}
+                isFavorite={item.isFavorite}
+                onRemoveItem={this._removeCharacter}
+                onFavoriteClicked={this._toggleFavorite}
+                onPress={() => {
+                  Navigation.push(this.props.componentId, {
+                    component: {
+                      name: HERO_DETAILS,
+                      passProps: {
+                        hero: item,
+                      },
                     },
-                    options: {
-                      topBar: {
-                        title: {
-                          text: item.name,
-                          color: '#FFFFFF'
-                        },
-                        background: {
-                          color: '#3a3535',
-                        }
-                      }
-                    }
-                  }
-                });
-              }}
-            />
+                  });
+                }}
+              />
+            </View>
           )}
+        />
+        <TestController
+          {...this.props}
+          thisComponentName={CHARACTERS_LIST}
+          otherComponentName={HERO_DETAILS}
         />
       </View>
     );

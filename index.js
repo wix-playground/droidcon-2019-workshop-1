@@ -1,3 +1,5 @@
+console.disableYellowBox = true;
+
 import React from 'react';
 import CharactersList from './src/CharactersList';
 
