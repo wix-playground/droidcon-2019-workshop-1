@@ -42,7 +42,7 @@ class HeroDetails extends React.Component {
 
   render() {
     if (this.firstRender && this.getScenario() === 'render') {
-      profiler.scenario('render').sample(HERO_DETAILS, this.props.instanceId);
+      profiler.scenario('render').sample(HERO_DETAILS, this.getInstanceId());
     }
     this.firstRender = false;
     const hero = this.props.hero || this.props.route.params.hero;

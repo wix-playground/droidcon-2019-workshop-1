@@ -4,12 +4,13 @@ import {
   ActivityIndicator,
   View,
   StyleSheet,
-  StatusBar,
+  StatusBar, InteractionManager,
 } from 'react-native';
 import ListItemCard from './CharacterListItem';
 import * as MarvelApi from './service';
 import {CHARACTERS_LIST, HERO_DETAILS} from '../index';
 import TestController from './TestController';
+import profiler from "./benchmarking/ScreenProfiler";
 
 class CharactersList extends React.Component {
   state = {
@@ -30,14 +31,40 @@ class CharactersList extends React.Component {
     },
   };
 
+  firstRender = true;
+
   constructor(props) {
     super(props);
-    for (let i = 0; i < Math.pow(2, 20); i++);
+    if (this.getScenario() === 'constructor') {
+      profiler.scenario('constructor').sample(CHARACTERS_LIST, this.getInstanceId());
+    }
   }
 
   componentDidMount() {
     this._fetchCharacters();
+    InteractionManager.runAfterInteractions(() => {
+      if (this.getScenario() === 'appear') {
+        profiler.scenario('appear').sample(CHARACTERS_LIST, this.getInstanceId());
+      }
+    });
   }
+
+  getScenario = () => {
+    return this.getProp('scenario');
+  };
+
+  getInstanceId = () => {
+    return this.getProp('instanceId');
+  };
+
+  getProp = propName => {
+    return (
+        this.props[propName] ||
+        (this.props.route &&
+            this.props.route.params &&
+            this.props.route.params[propName])
+    );
+  };
 
   _fetchCharacters() {
     this.setState({isLoading: true});
@@ -116,6 +143,10 @@ class CharactersList extends React.Component {
   }
 
   render() {
+    if (this.firstRender && this.getScenario() === 'render') {
+      profiler.scenario('render').sample(CHARACTERS_LIST, this.getInstanceId());
+    }
+    this.firstRender = false;
     return (
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content" backgroundColor="#232020" />
